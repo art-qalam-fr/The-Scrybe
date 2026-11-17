@@ -1,0 +1,52 @@
+name: CI
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements.txt || pip install -e . || true
+      - name: Syntax check
+        run: python -m compileall -q .
+      - name: Hotkey state machine smoke test
+        run: python ../tests/test_hotkey_toggle.py
+      - name: Output-language contract test (speak X -> write Y)
+        run: python ../tests/test_output_language_contract.py
+      - name: Remote cloud engine contract (no network, mocked HTTP)
+        run: python ../tests/test_remote_engine.py
+      - name: Tests
+        if: hashFiles('backend/tests/') != '' || hashFiles('backend/test_*.py') != ''
+        continue-on-error: true
+        run: pip install pytest && python -m pytest -x -q
+
+  node:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm ci --ignore-scripts || npm install --ignore-scripts
+      - name: Build
+        run: npm run build --if-present
+      - name: Tests
+        continue-on-error: true
+        run: npm test --if-present

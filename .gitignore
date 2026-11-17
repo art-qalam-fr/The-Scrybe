@@ -1,0 +1,29 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.eggs/
+.venv/
+venv/
+
+# ---- Node ----
+node_modules/
+dist/
+
+# ---- Build / packaging ----
+release/
+dist-backend/
+build/
+*.spec.bak
+
+# ---- Données runtime ----
+*.db
+*.db-shm
+*.db-wal
+logs/
+
+# ---- IDE ----
+.vscode/
+.idea/
+.cursor/

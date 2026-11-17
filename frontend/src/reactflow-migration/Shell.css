@@ -1,0 +1,38 @@
+/* Shell.jsx reutilise le layout et la charte de App.css.
+   Seuls les styles absents du fichier legacy sont definis ici. */
+
+/* Pied de sidebar : indicateur de statut (non style dans App.css legacy) */
+.sidebar-footer {
+    margin-top: auto;
+    padding: 0.75rem 0.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    /* Electron-only par design : zone non-draggable dans la fenetre frameless.
+       Le warning cross-browser est attendu — cette app ne tourne pas dans un navigateur. */
+    -webkit-app-region: no-drag;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #4ade80;
+    flex-shrink: 0;
+}
+
+.status-dot.pulse {
+    background-color: #f87171;
+    animation: status-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(1.25); }
+}

@@ -1,0 +1,41 @@
+appId: com.thescrybe.app
+productName: The Scrybe
+copyright: Copyright © 2026 ArchNext
+
+directories:
+  output: ../release
+  buildResources: build
+
+files:
+  - dist/**/*
+  - electron/**/*
+  - package.json
+  - "!**/*.map"
+
+# Backend Python gele (PyInstaller onedir) -> resources/backend/
+extraResources:
+  - from: ../dist-backend/scrybe-backend
+    to: backend
+    filter:
+      - "**/*"
+
+win:
+  target:
+    - nsis
+  icon: electron/assets/icon.ico
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: The Scrybe
+  runAfterFinish: true
+  artifactName: "${productName}-Setup-${version}.${ext}"
+
+portable:
+  artifactName: "${productName}-${version}-portable.${ext}"
+
+asar: true
+compression: maximum

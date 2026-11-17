@@ -1,0 +1,133 @@
+/* PipelineView — thème sombre cohérent avec designTokens.js (glass variant) */
+/* Primary : #a855f7 / Secondary : #6366f1 — fond #1a5276 */
+
+.pipeline-view-bg {
+    background: #1a5276;
+    min-height: 100vh;
+    color: #e5e7eb;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.pipeline-view-header {
+    padding: 20px 32px;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+    background: rgba(26, 82, 118, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.pipeline-view-header h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+.pipeline-view-header .subtitle {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+/* React Flow nodes */
+.scrybe-node {
+    background: rgba(26, 82, 118, 0.9);
+    border: 2px solid rgba(99, 102, 241, 0.4);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 14px 18px;
+    min-width: 160px;
+    text-align: center;
+}
+
+.scrybe-node .node-label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 6px;
+    color: #e2e8f0;
+}
+
+.scrybe-node .node-icon {
+    font-size: 22px;
+}
+
+/* États visuels — actif = primaire vif */
+.scrybe-node.active {
+    border-color: #a855f7;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+    animation: pulse-active 2s infinite;
+}
+
+.scrybe-node.active .node-label {
+    color: #a855f7;
+}
+
+.scrybe-node.recording {
+    border-color: #ef4444;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    animation: pulse-recording 1.2s infinite;
+}
+
+.scrybe-node.recording .node-label {
+    color: #ef4444;
+}
+
+.scrybe-node.transcribing {
+    border-color: #f59e0b;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+    animation: pulse-transcribing 1.5s infinite;
+}
+
+.scrybe-node.transcribing .node-label {
+    color: #f59e0b;
+}
+
+/* Edge styles */
+.scrybe-edge {
+    stroke: rgba(99, 102, 241, 0.4);
+    stroke-width: 2px;
+}
+
+/* Status legend */
+.pipeline-legend {
+    display: flex;
+    gap: 24px;
+    padding: 16px 32px;
+    background: rgba(26, 82, 118, 0.9);
+    border-top: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.legend-dot.active { background: #a855f7; box-shadow: 0 0 8px #a855f7; }
+.legend-dot.recording { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+.legend-dot.transcribing { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+.legend-dot.idle { background: #64748b; }
+
+@keyframes pulse-active {
+    0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(168, 85, 247, 0.8); }
+}
+
+@keyframes pulse-recording {
+    0%, 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.6); }
+    50% { box-shadow: 0 0 25px rgba(239, 68, 68, 1); }
+}
+
+@keyframes pulse-transcribing {
+    0%, 100% { box-shadow: 0 0 18px rgba(245, 158, 11, 0.6); }
+    50% { box-shadow: 0 0 28px rgba(245, 158, 11, 1); }
+}
