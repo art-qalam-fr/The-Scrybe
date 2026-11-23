@@ -1,6 +1,6 @@
 # Core dependencies for the voice dictation application
 keyboard>=0.13.5  # Global hotkey detection (MIT, commercial-safe)
-sounddevice>=0.4.6  # Audio recording
+sounddevice>=0.5.6  # Audio recording
 faster-whisper>=1.0.0  # Moteur de transcription rapide (défaut)
 openai-whisper>=20231117  # Moteur de transcription vanilla (fallback)
 pyautogui>=0.9.54  # Text injection (Ctrl+V)
