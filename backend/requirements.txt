@@ -4,7 +4,7 @@ sounddevice>=0.4.6  # Audio recording
 faster-whisper>=1.0.0  # Moteur de transcription rapide (défaut)
 openai-whisper>=20231117  # Moteur de transcription vanilla (fallback)
 pyautogui>=0.9.54  # Text injection (Ctrl+V)
-pyperclip>=1.8.0  # Clipboard (injection de texte)
+pyperclip>=1.11.0  # Clipboard (injection de texte)
 torch>=2.0.0  # Requis par openai-whisper uniquement (build CPU OK — faster-whisper passe par ctranslate2)
 numpy>=1.24.0  # Audio processing
 flask
